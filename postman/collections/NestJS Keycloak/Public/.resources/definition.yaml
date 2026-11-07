@@ -1,0 +1,5 @@
+$kind: collection
+name: Public
+order: 1000
+auth:
+  type: noauth

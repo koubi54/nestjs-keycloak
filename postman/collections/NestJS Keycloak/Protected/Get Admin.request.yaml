@@ -1,0 +1,14 @@
+$kind: http-request
+name: Get Admin
+order: 2000
+method: GET
+url: '{{baseUrl}}/auth/admin'
+scripts:
+  - type: afterResponse
+    language: text/javascript
+    code: |-
+      pm.test('Admin access granted', () => {
+        pm.response.to.have.status(200);
+        const body = pm.response.json();
+        pm.expect(body.message).to.eql('Admin access granted');
+      });

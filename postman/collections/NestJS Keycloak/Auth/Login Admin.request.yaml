@@ -1,0 +1,29 @@
+$kind: http-request
+name: Login Admin
+order: 2000
+method: POST
+url: '{{baseUrl}}/auth/login'
+headers:
+  - key: Content-Type
+    value: application/json
+auth:
+  type: noauth
+body:
+  type: json
+  content: |-
+    {
+      "username": "{{admin_username}}",
+      "password": "{{admin_password}}"
+    }
+scripts:
+  - type: afterResponse
+    language: text/javascript
+    code: |-
+      pm.test('Admin login returns tokens', () => {
+        pm.response.to.have.status(200);
+        const body = pm.response.json();
+        pm.expect(body).to.have.property('access_token');
+        pm.expect(body).to.have.property('refresh_token');
+        pm.environment.set('access_token', body.access_token);
+        pm.environment.set('refresh_token', body.refresh_token);
+      });

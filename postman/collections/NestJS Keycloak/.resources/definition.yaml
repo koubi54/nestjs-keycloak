@@ -1,0 +1,13 @@
+$kind: collection
+name: NestJS Keycloak
+description: |
+  Auth API for NestJS + Keycloak.
+  Run Login first — it saves access_token and refresh_token into the environment.
+variables:
+  - key: baseUrl
+    value: http://localhost:3000
+auth:
+  type: bearer
+  credentials:
+    - key: token
+      value: '{{access_token}}'

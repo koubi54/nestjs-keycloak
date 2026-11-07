@@ -1,0 +1,15 @@
+$kind: http-request
+name: Get Profile
+order: 1000
+method: GET
+url: '{{baseUrl}}/auth/profile'
+scripts:
+  - type: afterResponse
+    language: text/javascript
+    code: |-
+      pm.test('Profile is authenticated', () => {
+        pm.response.to.have.status(200);
+        const body = pm.response.json();
+        pm.expect(body.message).to.eql('Authenticated with Keycloak');
+        pm.expect(body.user).to.have.property('userId');
+      });

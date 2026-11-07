@@ -1,0 +1,33 @@
+name: Local
+values:
+  - key: baseUrl
+    value: http://localhost:3000
+    enabled: true
+    type: default
+    description: NestJS API base URL
+  - key: username
+    value: testuser
+    enabled: true
+    type: default
+  - key: password
+    value: password
+    enabled: true
+    type: secret
+  - key: admin_username
+    value: adminuser
+    enabled: true
+    type: default
+  - key: admin_password
+    value: password
+    enabled: true
+    type: secret
+  - key: access_token
+    value: ''
+    enabled: true
+    type: secret
+    description: Filled by Login / Login Admin / Refresh Token
+  - key: refresh_token
+    value: ''
+    enabled: true
+    type: secret
+    description: Filled by Login / Login Admin / Refresh Token

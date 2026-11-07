@@ -1,0 +1,16 @@
+$kind: http-request
+name: Root
+order: 2000
+method: GET
+url: '{{baseUrl}}/'
+auth:
+  type: noauth
+scripts:
+  - type: afterResponse
+    language: text/javascript
+    code: |-
+      pm.test('Root returns docs', () => {
+        pm.response.to.have.status(200);
+        const body = pm.response.json();
+        pm.expect(body).to.have.property('docs');
+      });
